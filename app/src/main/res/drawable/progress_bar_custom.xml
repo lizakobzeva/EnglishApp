@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Фон прогрессбара -->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="8dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#2574FF" />
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+
+
+    <!-- прогресс -->
+    <item android:id="@android:id/progress">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="8dp" />
+                <solid android:color="#2574FF" />
+            </shape>
+        </scale>
+    </item>
+</layer-list>

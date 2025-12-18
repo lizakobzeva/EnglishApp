@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextViewVariantsStyle">
+        <item name="android:textColor">@color/textMainColor</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@drawable/button</item>
+        <item name="android:textColor">@color/textMainColor</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="SecondaryButton" parent="ButtonStyle">
+        <item name="android:background">@color/secondaryColor</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

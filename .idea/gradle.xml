@@ -11,6 +11,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/di" />
+            <option value="$PROJECT_DIR$/libs/imageloader" />
+            <option value="$PROJECT_DIR$/libs/imageloader/api" />
+            <option value="$PROJECT_DIR$/libs/imageloader/coil" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="20dp" >
+                <ImageView
+                    android:id="@+id/close"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/round_arrow_back"
+                    android:layout_marginEnd="36dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Редактирование"
+                    android:textSize="28sp"
+                    android:textColor="@color/darkGreen"
+                    />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingHorizontal="30dp"
+            >
+            <ImageView
+                android:layout_marginTop="23dp"
+                android:id="@+id/edit_word_image"
+                android:layout_width="310dp"
+                android:layout_height="310dp"
+                android:background="@drawable/rounded_image_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_image_view"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Слово"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/editWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cat"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@drawable/btn_gray_rounded" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Перевод"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/editTranslation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Кошка"
+                    android:textSize="16sp"
+                    android:padding="12dp"
+                    android:background="@drawable/btn_gray_rounded"
+                    android:layout_marginBottom="32dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+
+        android:elevation="12dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_learning"
+            android:layout_width="280dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/greenMain"
+            android:text="Обучение"
+            android:textSize="26sp"
+            />
+    </LinearLayout>
+</FrameLayout>

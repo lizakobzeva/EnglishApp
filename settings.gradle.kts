@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "EnglishApp"
 include(":app")
- 
+include(":libs:di")
+include(":libs:imageloader:api")
+include(":libs:imageloader:coil")

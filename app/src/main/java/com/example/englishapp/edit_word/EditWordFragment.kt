@@ -38,7 +38,6 @@ class EditWordFragment: Fragment() {
         }
 
         val image = view.findViewById<ImageView>(R.id.edit_word_image)
-//        https://img.freepik.com/free-photo/view-beautiful-persian-domestic-cat_23-2151773821.jpg
         imageLoader.load(image,
             "https://www.shutterstock.com/shutterstock/photos/2587054363/display_1500/stock-photo-ginger-cat-levitates-and-meditates-sits-on-a-rug-in-the-lotus-position-the-cat-s-eyes-are-closed-2587054363.jpg")
 

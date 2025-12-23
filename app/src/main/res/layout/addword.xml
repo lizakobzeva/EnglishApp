@@ -1,207 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/addword"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:background="@drawable/card_white_rounded"
     android:padding="16dp"
-    android:background="#FFFFFF">
+    android:layout_marginBottom="16dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginTop="16dp"
+    android:elevation="6dp"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Добавить слово"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="24dp"/>
+        <ImageView
+            android:id="@+id/addword_image"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/enlish_flag_img" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Введите слово на русском или английском"
-        android:textSize="16sp"
-        android:textColor="#666666"
-        android:layout_marginBottom="16dp"/>
+        <ImageView
+            android:id="@+id/addword_edit_icon"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@drawable/pencilicon"
+            android:background="@drawable/btn_gray_rounded"
+            app:tint="@color/greenMain"
+            android:scaleType="centerInside"
+            android:layout_alignBottom="@id/addword_image"
+            android:layout_alignEnd="@id/addword_image"/>
 
+    <ImageView
+        android:id="@+id/addword_speaker_icon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentEnd="true"
 
-    <EditText
-        android:id="@+id/wordInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Введите слово..."
-        android:padding="12dp"
-        android:background="@drawable/edittext_background"
-        android:layout_marginBottom="24dp"/>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#EEEEEE"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Мы нашли для вас:"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="16dp"/>
-
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent">-->
+        android:background="@drawable/btn_green_rounded"
+        android:scaleType="centerInside"
+        android:src="@drawable/volumeicon" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/card_white_rounded"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:elevation="6dp"
-            android:gravity="center_vertical"
+            android:layout_toEndOf="@id/addword_image"
+            android:paddingStart="16dp"
+            android:paddingTop="20dp"
             >
 
             <TextView
-                android:id="@+id/word1_russian"
+                android:id="@+id/addword_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Кошка"
                 android:textSize="20sp"
                 android:textColor="#000000"
-                android:layout_marginBottom="8dp"/>
+                android:layout_centerVertical="true" />
 
             <TextView
-                android:id="@+id/word1_english"
+                android:id="@+id/addword_translation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cat"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/word1_transcription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="[kæt]"
                 android:textSize="16sp"
-                android:textColor="#666666"
-                android:layout_marginBottom="12dp"/>
-
-            <Button
-                android:id="@+id/addButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Добавить"
-                android:backgroundTint="@color/greenMain"
-                android:textColor="#FFFFFF"
-                android:paddingHorizontal="24dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/card_white_rounded"
-            android:elevation="6dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="16dp">
+                android:textColor="#333333"/>
 
             <TextView
-                android:id="@+id/word1_russian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Кошка"
-                android:textColor="#000000"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/word1_english"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Cat"
-                android:textColor="#333333"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/word1_transcription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="[kæt]"
-                android:textColor="#666666"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/addButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/greenMain"
-                android:paddingHorizontal="24dp"
-                android:text="Добавить"
-                android:textColor="#FFFFFF" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/card_white_rounded"
-            android:padding="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="5dp"
-            android:elevation="6dp"
-            android:gravity="center_vertical"
-            >
-
-            <TextView
-                android:id="@+id/word1_russian"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Кошка"
-                android:textSize="20sp"
-                android:textColor="#000000"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/word1_english"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cat"
-                android:textSize="18sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/word1_transcription"
+                android:id="@+id/addword_pronunciation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[kæt]"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textColor="#666666"
-                android:layout_marginBottom="12dp"/>
+                android:layout_marginBottom="6dp"/>
 
-            <Button
-                android:id="@+id/addButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Добавить"
-                android:backgroundTint="@color/greenMain"
-                android:textColor="#FFFFFF"
-                android:paddingHorizontal="24dp"/>
+                <Button
+                    android:id="@+id/addword_addbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Добавить"
+                    android:backgroundTint="@color/greenMain"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:paddingHorizontal="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"/>
 
         </LinearLayout>
-<!--    </ScrollView>-->
-</LinearLayout>
+
+    </RelativeLayout>

@@ -12,6 +12,7 @@ import com.example.englishapp.add_word.AddWordFragment
 import com.example.englishapp.com.example.impl.words_list.WordsListFragment
 import com.example.englishapp.edit_word.EditWordFragment
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +42,12 @@ class MainActivity : AppCompatActivity() {
 
         when(deeplink.toString()) {
             ACTION_ADDWORD-> {
-            val addWordFragment = AddWordFragment()
+                val addWordFragment = AddWordFragment()
 
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.main, addWordFragment)
-                .addToBackStack("com/example/impl/words_list")
-                .commit()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main, addWordFragment)
+                    .addToBackStack("com/example/impl/words_list")
+                    .commit()
             }
 
             ACTION_EDITWORD -> {

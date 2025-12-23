@@ -46,9 +46,9 @@
                             android:textColor="@color/textMainColor" />
                     </LinearLayout>
                     <ImageView
+                        style="?attr/buttonSearch"
                         android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@drawable/searchicon" />
+                        android:layout_height="26dp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             <View

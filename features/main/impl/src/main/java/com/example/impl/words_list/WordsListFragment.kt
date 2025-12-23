@@ -1,22 +1,20 @@
-package com.example.englishapp.words_list
+package com.example.englishapp.com.example.impl.words_list
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import com.example.api.ImageLoader
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.englishapp.MainActivity
-import com.example.englishapp.R
-import com.example.englishapp.add_word.AddWordFragment
-import com.example.englishapp.edit_word.EditWordFragment
+import com.example.api.WordConstants.ACTION_ADDWORD
+import com.example.api.WordConstants.ACTION_EDITWORD
+import com.example.impl.R
 import org.koin.android.ext.android.inject
 import kotlin.getValue
 
@@ -40,12 +38,16 @@ class WordsListFragment: Fragment() {
         val addWordButton = view.findViewById<ImageButton>(R.id.btn_add)
 
         addWordButton.setOnClickListener {
-            val addWordFragment = AddWordFragment()
-
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.main, addWordFragment)
-                .addToBackStack("words_list")
-                .commit()
+            Intent(Intent.ACTION_VIEW).apply {
+                data = ACTION_ADDWORD.toUri()
+                flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }.also(::startActivity)
+//            val addWordFragment = AddWordFragment()
+//
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.main, addWordFragment)
+//                .addToBackStack("com/example/impl/words_list")
+//                .commit()
 
         }
 
@@ -63,12 +65,18 @@ class WordsListFragment: Fragment() {
             imageLoader.load(image, word.img)
 
             card.setOnClickListener {
-                val editWordFragment = EditWordFragment()
-
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.main, editWordFragment)
-                    .addToBackStack("words_list")
-                    .commit()
+                Intent(Intent.ACTION_VIEW).apply {
+                    data = ACTION_EDITWORD.toUri()
+                    flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    putExtra("word_id", word.name)
+                }.also(::startActivity)
+//
+//                val editWordFragment = EditWordFragment()
+//
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.main, editWordFragment)
+//                    .addToBackStack("com/example/impl/words_list")
+//                    .commit()
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.englishapp.words_list
+package com.example.englishapp.com.example.impl.words_list
 
 import androidx.lifecycle.ViewModel
 

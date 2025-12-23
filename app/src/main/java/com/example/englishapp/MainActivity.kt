@@ -1,11 +1,16 @@
 package com.example.englishapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.englishapp.words_list.WordsListFragment
+import com.example.api.WordConstants.ACTION_ADDWORD
+import com.example.api.WordConstants.ACTION_EDITWORD
+import com.example.englishapp.add_word.AddWordFragment
+import com.example.englishapp.com.example.impl.words_list.WordsListFragment
+import com.example.englishapp.edit_word.EditWordFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,4 +31,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+
+        val deeplink = intent.data
+        if (deeplink == null) {
+            return
+        }
+
+        when(deeplink.toString()) {
+            ACTION_ADDWORD-> {
+            val addWordFragment = AddWordFragment()
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main, addWordFragment)
+                .addToBackStack("com/example/impl/words_list")
+                .commit()
+            }
+
+            ACTION_EDITWORD -> {
+                val name = intent.getStringExtra("word_id") ?: ""
+                val editWordFragment = EditWordFragment.newInstance(name)
+
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main, editWordFragment)
+                    .addToBackStack("com/example/impl/words_list")
+                    .commit()
+            }
+        }
+    }
 }

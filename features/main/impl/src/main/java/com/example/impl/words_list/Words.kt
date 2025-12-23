@@ -1,4 +1,4 @@
-package com.example.englishapp.words_list
+package com.example.englishapp.com.example.impl.words_list
 
 enum class Words(val title: String, val translation: String, val pronunciation: String,  val img: String) {
     WORDS_1("Hello", "Привет", "[kaet]" , "https://www.shutterstock.com/shutterstock/photos/1990073147/display_1500/stock-vector-hi-hello-woman-waving-hand-welcome-hand-drawn-style-vector-design-illustrations-1990073147.jpg"),

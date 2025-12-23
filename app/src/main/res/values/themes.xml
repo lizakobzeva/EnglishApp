@@ -4,5 +4,12 @@
         <item name="android:windowBackground">@color/white</item>
     </style>
 
-    <style name="Theme.EnglishApp" parent="Base.Theme.EnglishApp" />
+    <style name="Theme.EnglishApp" parent="Base.Theme.EnglishApp">
+        <item name="buttonSearch">@style/ButtonSearch</item>
+    </style>
+
+
+    <style name="ButtonSearch">
+        <item name="android:src">@drawable/searchicon</item>
+    </style>
 </resources>

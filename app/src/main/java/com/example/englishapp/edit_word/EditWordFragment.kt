@@ -1,6 +1,7 @@
 package com.example.englishapp.edit_word
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,8 @@ class EditWordFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val wordId = arguments?.getString("name")
+        Log.d("TECH", "wordId: $wordId")
 
         val close = view.findViewById<ImageView>(R.id.close)
 
@@ -41,5 +44,17 @@ class EditWordFragment: Fragment() {
         imageLoader.load(image,
             "https://www.shutterstock.com/shutterstock/photos/2587054363/display_1500/stock-photo-ginger-cat-levitates-and-meditates-sits-on-a-rug-in-the-lotus-position-the-cat-s-eyes-are-closed-2587054363.jpg")
 
+    }
+
+    companion object {
+        fun newInstance(name: String): Fragment {
+            val extras = Bundle().apply {
+                putString("name", name)
+            }
+
+            return EditWordFragment().apply {
+                arguments = extras
+            }
+        }
     }
 }

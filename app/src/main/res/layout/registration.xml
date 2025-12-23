@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingHorizontal="32dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:letterSpacing="0.02"
+        android:text="Добро пожаловать!"
+        android:textAlignment="center"
+        android:textColor="@color/greenMain"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="340dp"
+        android:layout_height="70dp"
+        android:layout_weight="0.8"
+        android:backgroundTint="@color/greenMain"
+        android:text="ЗАРЕГИСТРИРОВАТЬСЯ"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="594dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Имя"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="159dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Почта"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Пароль"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="372dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Повтор"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="481dp" />
+
+    <EditText
+        android:id="@+id/wordInput"
+        android:layout_width="337dp"
+        android:layout_height="52dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Введите имя"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="192dp" />
+
+    <EditText
+        android:id="@+id/wordInput"
+        android:layout_width="337dp"
+        android:layout_height="52dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Введите почту"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <EditText
+        android:id="@+id/wordInput"
+        android:layout_width="337dp"
+        android:layout_height="52dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Введите пароль"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="407dp" />
+
+    <EditText
+        android:id="@+id/wordInput"
+        android:layout_width="337dp"
+        android:layout_height="52dp"
+        android:background="@drawable/edittext_background"
+        android:hint="Повторите пароль"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="515dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

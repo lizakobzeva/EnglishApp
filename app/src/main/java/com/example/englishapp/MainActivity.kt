@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.api.WordConstants.ACTION_ADDWORD
 import com.example.api.WordConstants.ACTION_EDITWORD
 import com.example.englishapp.add_word.AddWordFragment
-import com.example.englishapp.com.example.impl.words_list.WordsListFragment
+import com.example.impl.words_list.WordsListFragment
 import com.example.englishapp.edit_word.EditWordFragment
 
 
@@ -26,17 +26,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(savedInstanceState == null){
+            handleIntent(intent)
+        }
+    }
+    
+    private fun handleIntent(intent: Intent?) {
+        val deeplink = intent?.data
+        if (deeplink == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.main, WordsListFragment())
                 .commitAllowingStateLoss()
-        }
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-
-        val deeplink = intent.data
-        if (deeplink == null) {
             return
         }
 
@@ -59,6 +58,17 @@ class MainActivity : AppCompatActivity() {
                     .addToBackStack("com/example/impl/words_list")
                     .commit()
             }
+            else -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main, WordsListFragment())
+                    .commitAllowingStateLoss()
+            }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleIntent(intent)
     }
 }

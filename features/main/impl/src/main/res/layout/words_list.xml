@@ -27,9 +27,9 @@
                         android:src="@drawable/usericon" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
+                        android:layout_weight="1"
                         android:gravity="center_horizontal"
                         >
                         <ImageView
@@ -46,11 +46,32 @@
                             android:textColor="@color/textMainColor" />
                     </LinearLayout>
                     <ImageView
-                        style="?attr/buttonSearch"
+                        android:id="@+id/btn_search"
                         android:layout_width="26dp"
-                        android:layout_height="26dp" />
+                        android:layout_height="26dp"
+                        android:src="@drawable/searchicon"
+                        android:contentDescription="Поиск"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:padding="4dp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+                
+            <EditText
+                android:id="@+id/search_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:hint="Поиск слова..."
+                android:padding="12dp"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:visibility="gone"
+                android:imeOptions="actionSearch" />
+                
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

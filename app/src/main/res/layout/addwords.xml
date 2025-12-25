@@ -3,29 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="#FFFFFF">
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="16dp"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Добавить слово"
-        android:textSize="24sp"
-        android:paddingHorizontal="96dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="12dp"/>
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="20dp">
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/round_arrow_back"
+                android:layout_marginEnd="36dp" />
 
-    <View
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Добавить слово"
+                android:textSize="28sp"
+                android:textColor="@color/darkGreen" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#EEEEEE"
-        android:layout_marginBottom="28dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
     <EditText
         android:id="@+id/wordInput"
@@ -60,5 +75,6 @@
                 android:paddingBottom="90dp"
                 />
         </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

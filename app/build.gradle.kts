@@ -51,6 +51,9 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.9")
 
     implementation(project(":features:main:impl"))
+    implementation(project(":features:addword:impl"))
+    implementation(project(":features:editword:impl"))
+    implementation(project(":features:wordsstudy:impl"))
     implementation(project(":libs:di"))
     implementation(project(":libs:imageloader:coil"))
 }

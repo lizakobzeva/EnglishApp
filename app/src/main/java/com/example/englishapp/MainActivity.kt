@@ -9,10 +9,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.api.WordConstants.ACTION_ADDWORD
 import com.example.api.WordConstants.ACTION_EDITWORD
 import com.example.api.WordConstants.ACTION_STUDY
-import com.example.englishapp.add_word.AddWordFragment
 import com.example.impl.words_list.WordsListFragment
-import com.example.englishapp.edit_word.EditWordFragment
-import com.example.englishapp.words_study.WordsStudyFragment
+import com.example.impl.addword.AddWordFragment
+import com.example.impl.editword.EditWordFragment
+import com.example.impl.wordsstudy.WordsStudyFragment
 
 
 class MainActivity : AppCompatActivity() {

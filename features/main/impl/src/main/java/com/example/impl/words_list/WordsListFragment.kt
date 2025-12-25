@@ -90,16 +90,8 @@ class WordsListFragment: Fragment() {
                 data = ACTION_ADDWORD.toUri()
                 flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
             }.also(::startActivity)
-//            val addWordFragment = AddWordFragment()
-//
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.main, addWordFragment)
-//                .addToBackStack("com/example/impl/words_list")
-//                .commit()
-
         }
 
-        // Подписываемся на Flow и обновляем UI при изменении данных
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.words.collect { words ->

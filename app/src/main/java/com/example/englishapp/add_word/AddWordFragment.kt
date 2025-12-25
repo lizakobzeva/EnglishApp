@@ -10,9 +10,6 @@ import com.example.api.ImageLoader
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.Lifecycle
 import com.example.englishapp.R
 import com.example.impl.data.entity.WordEntity
 import com.example.impl.ui.viewmodel.WordsViewModel
@@ -37,7 +34,12 @@ class AddWordFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val closeButton = view.findViewById<ImageView>(R.id.close)
         val container = view.findViewById<ViewGroup>(R.id.addwords)
+
+        closeButton?.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
         // Показываем слова из enum AddWords, которые можно добавить в базу данных
         AddWords.entries.forEach { addWord ->
@@ -53,6 +55,20 @@ class AddWordFragment: Fragment() {
             translation.text = addWord.translation
             pronunciation.text = addWord.pronunciation
             imageLoader.load(image, addWord.img)
+
+            // При нажатии на карточку открываем страницу редактирования в режиме добавления
+            card.setOnClickListener {
+                val editFragment = com.example.englishapp.edit_word.EditWordFragment.newInstanceForAdd(
+                    title = addWord.title,
+                    translation = addWord.translation,
+                    pronunciation = addWord.pronunciation,
+                    img = addWord.img
+                )
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.main, editFragment)
+                    .addToBackStack("add_word")
+                    .commit()
+            }
 
             addButton.setOnClickListener {
                 // Добавляем слово в базу данных

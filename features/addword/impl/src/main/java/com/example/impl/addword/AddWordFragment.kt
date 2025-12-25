@@ -15,10 +15,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.api.EditWordApi
 import com.example.impl.addword.R
 import com.example.impl.data.entity.WordEntity
 import com.example.impl.ui.viewmodel.WordsViewModel
+import com.example.impl.words_list.WordsListFragment
 import com.example.impl.words_list.WordsListViewModelFactory
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -30,7 +30,6 @@ class AddWordFragment: Fragment() {
         WordsListViewModelFactory(requireContext().applicationContext)
     }
     private val imageLoader by inject<ImageLoader<ImageView>>()
-    private val editWordApi by inject<EditWordApi>()
     private val wordInfoService = WordInfoService()
     
     private var searchJob: Job? = null
@@ -50,12 +49,12 @@ class AddWordFragment: Fragment() {
         val container = view.findViewById<ViewGroup>(R.id.addwords)
         val wordInput = view.findViewById<EditText>(R.id.wordInput)
         val foundText = view.findViewById<TextView>(R.id.found_text)
+        val instructionText = view.findViewById<TextView>(R.id.instruction_text)
 
         closeButton?.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        // Обработка ввода текста с задержкой для поиска
         wordInput?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -65,69 +64,20 @@ class AddWordFragment: Fragment() {
                 if (query.isNullOrEmpty()) {
                     container.removeAllViews()
                     foundText?.visibility = View.GONE
-                    // Показываем слова из enum при пустом поле
-                    showDefaultWords(container)
+                    instructionText?.visibility = View.VISIBLE
                     return
                 }
                 
+                instructionText?.visibility = View.GONE
                 foundText?.visibility = View.VISIBLE
                 searchJob = lifecycleScope.launch {
-                    delay(500) // Задержка 500мс перед запросом
+                    delay(500)
                     if (query.isNotEmpty()) {
                         searchWord(query, container)
                     }
                 }
             }
         })
-        
-        // Показываем слова из enum по умолчанию
-        showDefaultWords(container)
-    }
-    
-    private fun showDefaultWords(container: ViewGroup) {
-        container.removeAllViews()
-        // Показываем слова из enum AddWords, которые можно добавить в базу данных
-        AddWords.entries.forEach { addWord ->
-            val card = layoutInflater.inflate(R.layout.addword, container, false)
-            val title = card.findViewById<TextView>(R.id.addword_title)
-            val translation = card.findViewById<TextView>(R.id.addword_translation)
-            val pronunciation = card.findViewById<TextView>(R.id.addword_pronunciation)
-            val image = card.findViewById<ImageView>(R.id.addword_image)
-            val addButton = card.findViewById<Button>(R.id.addword_addbutton)
-            container.addView(card)
-
-            title.text = addWord.title
-            translation.text = addWord.translation
-            pronunciation.text = addWord.pronunciation
-            imageLoader.load(image, addWord.img)
-
-            // При нажатии на карточку открываем страницу редактирования в режиме добавления
-            card.setOnClickListener {
-                val editFragment = editWordApi.getEditWordFragmentForAdd(
-                    title = addWord.title,
-                    translation = addWord.translation,
-                    pronunciation = addWord.pronunciation,
-                    img = addWord.img
-                )
-                // Находим контейнер динамически через requireActivity()
-                val containerId = requireActivity().resources.getIdentifier("main", "id", requireActivity().packageName)
-                parentFragmentManager.beginTransaction()
-                    .replace(containerId, editFragment)
-                    .addToBackStack("add_word")
-                    .commit()
-            }
-
-            addButton.setOnClickListener {
-                // Добавляем слово в базу данных
-                val wordEntity = WordEntity(
-                    title = addWord.title,
-                    translation = addWord.translation,
-                    pronunciation = addWord.pronunciation,
-                    img = addWord.img
-                )
-                viewModel.insertWord(wordEntity)
-            }
-        }
     }
     
     private suspend fun searchWord(query: String, container: ViewGroup) {
@@ -136,7 +86,6 @@ class AddWordFragment: Fragment() {
         val result = wordInfoService.getWordInfo(query)
         result.fold(
             onSuccess = { wordInfo ->
-                // Успешный ответ - показываем карточку с результатом
                 view?.post {
                     showWordCard(container, wordInfo)
                 }
@@ -144,7 +93,6 @@ class AddWordFragment: Fragment() {
             onFailure = { error ->
                 Log.e("AddWordFragment", "Error fetching word info", error)
                 view?.post {
-                    // Можно показать сообщение об ошибке или оставить пустым
                     container.removeAllViews()
                 }
             }
@@ -167,24 +115,7 @@ class AddWordFragment: Fragment() {
         pronunciation.text = wordInfo.pronunciation
         imageLoader.load(image, wordInfo.img)
 
-        // При нажатии на карточку открываем страницу редактирования в режиме добавления
-        card.setOnClickListener {
-            val editFragment = editWordApi.getEditWordFragmentForAdd(
-                title = wordInfo.title,
-                translation = wordInfo.translation,
-                pronunciation = wordInfo.pronunciation,
-                img = wordInfo.img
-            )
-            // Находим контейнер динамически через requireActivity()
-            val containerId = requireActivity().resources.getIdentifier("main", "id", requireActivity().packageName)
-            parentFragmentManager.beginTransaction()
-                .replace(containerId, editFragment)
-                .addToBackStack("add_word")
-                .commit()
-        }
-
         addButton.setOnClickListener {
-            // Добавляем слово в базу данных
             val wordEntity = WordEntity(
                 title = wordInfo.title,
                 translation = wordInfo.translation,
@@ -192,6 +123,11 @@ class AddWordFragment: Fragment() {
                 img = wordInfo.img
             )
             viewModel.insertWord(wordEntity)
+            
+            val containerId = requireActivity().resources.getIdentifier("main", "id", requireActivity().packageName)
+            parentFragmentManager.beginTransaction()
+                .replace(containerId, WordsListFragment())
+                .commit()
         }
     }
 }

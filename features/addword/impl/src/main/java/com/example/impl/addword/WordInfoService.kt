@@ -12,13 +12,12 @@ class WordInfoService {
     private val client = OkHttpClient()
     private val json = Json { ignoreUnknownKeys = true }
 
-    // http://10.0.2.2:8080/api/word_info
     private val baseUrl = " http://10.0.2.2:8080/api/word_info"
     
     suspend fun getWordInfo(query: String): Result<WordInfoResponse> = withContext(Dispatchers.IO) {
         try {
             val encodedQuery = java.net.URLEncoder.encode(query, "UTF-8")
-            val url = "$baseUrl?query=\"$encodedQuery\""
+            val url = "$baseUrl?query=$encodedQuery"
             val request = Request.Builder()
                 .url(url)
                 .get()
@@ -40,7 +39,12 @@ class WordInfoService {
             }
             
             val wordInfo = json.decodeFromString<WordInfoResponse>(responseBody)
-            Result.success(wordInfo)
+            val cleanedWordInfo = wordInfo.copy(
+                title = wordInfo.title.trim('"'),
+                translation = wordInfo.translation.trim('"'),
+                pronunciation = wordInfo.pronunciation.trim('"')
+            )
+            Result.success(cleanedWordInfo)
         } catch (e: Exception) {
             Log.e("WordInfoService", "Error fetching word info", e)
             Result.failure(e)

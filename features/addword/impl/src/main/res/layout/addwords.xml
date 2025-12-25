@@ -45,6 +45,15 @@
 
 
     <TextView
+        android:id="@+id/instruction_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="введите слово которое хотите добавить"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
         android:id="@+id/found_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

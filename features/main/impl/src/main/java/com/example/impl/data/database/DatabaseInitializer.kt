@@ -8,7 +8,6 @@ object DatabaseInitializer {
     suspend fun initialize(database: AppDatabase) {
         val wordDao = database.wordDao()
         
-        // Определяем все слова, которые должны быть в БД
         val allRequiredWords = listOf(
                 WordEntity(
                     title = "Hello",
@@ -79,19 +78,15 @@ object DatabaseInitializer {
 
         )
         
-        // Получаем текущее количество слов в БД
         val currentCount = wordDao.getWordCount()
         
-        // Если БД пустая, добавляем все слова
         if (currentCount == 0) {
             wordDao.insertAll(allRequiredWords)
         } else {
-            // Получаем список существующих слов через Flow (используем first())
             try {
                 val existingWords = wordDao.getAllWords().first()
                 val existingTitles = existingWords.map { it.title }.toSet()
                 
-                // Добавляем только те слова, которых еще нет в БД
                 val wordsToAdd = allRequiredWords.filter { word ->
                     !existingTitles.contains(word.title)
                 }
@@ -99,8 +94,6 @@ object DatabaseInitializer {
                     wordDao.insertAll(wordsToAdd)
                 }
             } catch (e: Exception) {
-                // Если произошла ошибка, просто добавляем все слова
-                // Это может произойти, если база данных еще не готова
             }
         }
     }

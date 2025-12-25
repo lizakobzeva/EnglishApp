@@ -51,7 +51,6 @@ class WordsListFragment: Fragment() {
         val addWordButton = view.findViewById<ImageButton>(R.id.btn_add)
         val studyButton = view.findViewById<Button>(R.id.btn_learning)
 
-        // Обработчик кнопки поиска
         if (searchButton == null) {
             Log.e("WordsListFragment", "Search button is null!")
         }
@@ -79,7 +78,6 @@ class WordsListFragment: Fragment() {
             }
         } ?: Log.e("WordsListFragment", "Search button is null, cannot set click listener")
 
-        // Обработчик ввода текста в поле поиска
         searchInput?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -103,7 +101,6 @@ class WordsListFragment: Fragment() {
             }.also(::startActivity)
         }
 
-        // Подписываемся на Flow и обновляем UI при изменении данных
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.words.collect { words ->

@@ -89,6 +89,7 @@ int id addword_translation 0x0
 int id addwords 0x0
 int id close 0x0
 int id found_text 0x0
+int id instruction_text 0x0
 int id wordInput 0x0
 int layout addword 0x0
 int layout addwords 0x0

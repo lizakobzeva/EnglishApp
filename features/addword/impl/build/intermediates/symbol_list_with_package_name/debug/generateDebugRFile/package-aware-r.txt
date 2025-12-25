@@ -89,6 +89,7 @@ id addword_title
 id addword_translation
 id addwords
 id close
+id found_text
 id wordInput
 layout addword
 layout addwords

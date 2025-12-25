@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -53,5 +54,9 @@ dependencies {
     // Lifecycle
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    
+    // Networking
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.serialization.json)
 }
 

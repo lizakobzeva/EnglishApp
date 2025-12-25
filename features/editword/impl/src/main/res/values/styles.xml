@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Header Styles -->
+    <style name="HeaderLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/header_height</item>
+        <item name="android:layout_marginTop">@dimen/header_margin_top</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">@dimen/header_padding_horizontal</item>
+    </style>
+
+    <style name="HeaderTitle">
+        <item name="android:textSize">@dimen/text_size_header</item>
+        <item name="android:textColor">@color/darkGreen</item>
+    </style>
+
+    <!-- Icon Styles -->
+    <style name="IconLarge">
+        <item name="android:layout_width">@dimen/icon_size_large</item>
+        <item name="android:layout_height">@dimen/icon_size_large</item>
+    </style>
+
+    <!-- Text Styles -->
+    <style name="TextLabel">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/textMainColor</item>
+        <item name="android:layout_marginBottom">@dimen/edittext_margin_bottom</item>
+    </style>
+
+    <!-- Image Styles -->
+    <style name="ImageEditWord">
+        <item name="android:layout_width">@dimen/image_size_large</item>
+        <item name="android:layout_height">@dimen/image_size_large</item>
+        <item name="android:background">@drawable/rounded_image_background</item>
+    </style>
+
+    <!-- EditText Styles -->
+    <style name="EditTextDefault">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/edittext_padding</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:background">@drawable/btn_gray_rounded</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="ButtonPrimaryMedium">
+        <item name="android:layout_width">@dimen/button_width_medium</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:textSize">@dimen/text_size_xxl</item>
+        <item name="android:backgroundTint">@color/greenMain</item>
+    </style>
+
+    <!-- Bottom Bar Styles -->
+    <style name="BottomBarCenter">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">73dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingHorizontal">@dimen/bottom_bar_padding_horizontal_medium</item>
+    </style>
+
+    <!-- Divider Style -->
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider_height</item>
+        <item name="android:background">@color/divider</item>
+    </style>
+</resources>

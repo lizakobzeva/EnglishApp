@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Header/Toolbar -->
+    <dimen name="header_height">56dp</dimen>
+    <dimen name="header_padding_horizontal">20dp</dimen>
+    <dimen name="header_margin_top">8dp</dimen>
+    
+    <!-- Icons -->
+    <dimen name="icon_size_small">26dp</dimen>
+    <dimen name="icon_size_medium">34dp</dimen>
+    <dimen name="icon_size_large">40dp</dimen>
+    <dimen name="icon_padding">4dp</dimen>
+    <dimen name="icon_action_padding">8dp</dimen>
+    
+    <!-- Spacing -->
+    <dimen name="spacing_xs">5dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">12dp</dimen>
+    <dimen name="spacing_large">16dp</dimen>
+    <dimen name="spacing_xl">20dp</dimen>
+    <dimen name="spacing_xxl">24dp</dimen>
+    <dimen name="spacing_xxxl">30dp</dimen>
+    <dimen name="spacing_36">36dp</dimen>
+    
+    <!-- Card -->
+    <dimen name="card_padding">11dp</dimen>
+    <dimen name="card_margin_horizontal">20dp</dimen>
+    <dimen name="card_margin_top">5dp</dimen>
+    <dimen name="card_margin_bottom">14dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
+    <dimen name="card_height">104dp</dimen>
+    
+    <!-- Image -->
+    <dimen name="image_size_small">80dp</dimen>
+    <dimen name="image_size_medium">140dp</dimen>
+    <dimen name="image_size_large">310dp</dimen>
+    <dimen name="image_margin_end">20dp</dimen>
+    
+    <!-- Text Sizes -->
+    <dimen name="text_size_xs">10sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xl">20sp</dimen>
+    <dimen name="text_size_xxl">26sp</dimen>
+    <dimen name="text_size_header">28sp</dimen>
+    
+    <!-- EditText -->
+    <dimen name="edittext_padding">12dp</dimen>
+    <dimen name="edittext_margin_bottom">8dp</dimen>
+    
+    <!-- Button -->
+    <dimen name="button_height">55dp</dimen>
+    <dimen name="button_width_medium">280dp</dimen>
+    <dimen name="button_padding_horizontal">20dp</dimen>
+    
+    <!-- Bottom Bar -->
+    <dimen name="bottom_bar_height">73dp</dimen>
+    <dimen name="bottom_bar_elevation">12dp</dimen>
+    <dimen name="bottom_bar_padding_horizontal">27dp</dimen>
+    
+    <!-- Divider -->
+    <dimen name="divider_height">1dp</dimen>
+    
+    <!-- ScrollView -->
+    <dimen name="scroll_padding_top">10dp</dimen>
+    <dimen name="scroll_padding_bottom">90dp</dimen>
+    
+    <!-- Action Button Margin -->
+    <dimen name="action_button_margin_start">16dp</dimen>
+    <dimen name="action_button_margin_top">13dp</dimen>
+    <dimen name="back_button_margin_end">36dp</dimen>
+</resources>
+

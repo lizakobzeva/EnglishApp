@@ -15,15 +15,10 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:paddingHorizontal="20dp" >
+                    style="@style/HeaderLayout">
 
                     <ImageView
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        style="@style/IconSmall"
                         android:src="@drawable/usericon" />
 
                     <LinearLayout
@@ -33,49 +28,36 @@
                         android:gravity="center_horizontal"
                         >
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
+                            style="@style/IconLarge"
                             android:src="@mipmap/enlish_flag_img" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
+                            android:layout_marginStart="@dimen/spacing_medium"
                             android:text="Английский"
-                            android:textSize="28sp"
-                            android:textColor="@color/textMainColor" />
+                            style="@style/HeaderTitleMain" />
                     </LinearLayout>
                     <ImageView
                         android:id="@+id/btn_search"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="@dimen/icon_size_small"
+                        android:layout_height="@dimen/icon_size_small"
                         android:src="@drawable/searchicon"
                         android:contentDescription="Поиск"
                         android:clickable="true"
                         android:focusable="true"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:padding="4dp" />
+                        android:padding="@dimen/icon_padding" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
                 
             <EditText
                 android:id="@+id/search_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                style="@style/EditTextSearch"
                 android:hint="Поиск слова..."
-                android:padding="12dp"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
-                android:visibility="gone"
-                android:imeOptions="actionSearch" />
+                android:visibility="gone" />
                 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0" />
+            <View style="@style/Divider" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <ScrollView
@@ -84,12 +66,7 @@
 
             <LinearLayout
                 android:id="@+id/words_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="90dp"
-                 />
+                style="@style/ScrollContent" />
         </ScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -100,25 +77,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0" />
+        <View style="@style/Divider" />
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:layout_gravity="bottom"
-        android:gravity="center_vertical"
-        android:paddingHorizontal="27dp"
-        android:background="@color/white"
-        android:elevation="12dp">
+        style="@style/BottomBar">
 
         <Button
             android:id="@+id/btn_learning"
+            style="@style/ButtonPrimary"
             android:text="Обучение"
-            android:textSize="26sp"
-            android:backgroundTint="@color/greenMain"
-            android:layout_height="55dp"
             android:layout_width="wrap_content"
             android:layout_weight="0.8"
             />
@@ -128,7 +94,7 @@
             android:id="@+id/btn_add"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="21dp"
+            android:layout_marginStart="@dimen/spacing_xl"
              />
     </LinearLayout>
     </LinearLayout>

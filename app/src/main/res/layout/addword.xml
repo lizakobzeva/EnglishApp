@@ -4,51 +4,35 @@
     android:id="@+id/addword"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/card_white_rounded"
-    android:padding="15dp"
-    android:layout_marginBottom="16dp"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginTop="16dp"
-    android:elevation="6dp"
+    style="@style/CardAddWord"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/addword_image"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            style="@style/ImageAddWord"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/enlish_flag_img" />
 
         <ImageView
             android:id="@+id/addword_edit_icon"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:src="@drawable/pencilicon"
-            android:background="@drawable/btn_gray_rounded"
-            app:tint="@color/greenMain"
-            android:scaleType="centerInside"
+            style="@style/ActionButtonEdit"
             android:layout_alignBottom="@id/addword_image"
             android:layout_alignEnd="@id/addword_image"/>
 
     <ImageView
         android:id="@+id/addword_speaker_icon"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_alignParentEnd="true"
-
-        android:background="@drawable/btn_green_rounded"
-        android:scaleType="centerInside"
-        android:src="@drawable/volumeicon" />
+        style="@style/ActionButtonSpeaker"
+        android:layout_alignParentEnd="true" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_toEndOf="@id/addword_image"
-            android:paddingStart="16dp"
-            android:paddingTop="20dp"
+            android:paddingStart="@dimen/image_padding_start"
+            android:paddingTop="@dimen/image_padding_top"
             >
 
             <TextView
@@ -56,8 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Кошка"
-                android:textSize="20sp"
-                android:textColor="#000000"
+                style="@style/TextTitle"
                 android:layout_centerVertical="true" />
 
             <TextView
@@ -65,27 +48,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cat"
-                android:textSize="16sp"
-                android:textColor="#333333"/>
+                style="@style/TextSecondaryDark"/>
 
             <TextView
                 android:id="@+id/addword_pronunciation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[kæt]"
-                android:textSize="14sp"
-                android:textColor="#666666"
-                android:layout_marginBottom="6dp"/>
+                android:textSize="@dimen/text_size_small"
+                android:textColor="@color/textSecondaryColor"
+                android:layout_marginBottom="@dimen/spacing_small"/>
 
                 <Button
                     android:id="@+id/addword_addbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/ButtonAdd"
                     android:text="Добавить"
-                    android:backgroundTint="@color/greenMain"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp"
-                    android:paddingHorizontal="20dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"/>
 

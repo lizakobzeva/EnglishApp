@@ -101,32 +101,32 @@ class WordsListFragment: Fragment() {
                 data = ACTION_STUDY.toUri()
                 flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
             }.also(::startActivity)
+        }
 
-            // Подписываемся на Flow и обновляем UI при изменении данных
-            viewLifecycleOwner.lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel.words.collect { words ->
-                        container.removeAllViews()
-                        words.forEach { word ->
-                            val card = layoutInflater.inflate(R.layout.word, container, false)
-                            val title = card.findViewById<TextView>(R.id.word_title)
-                            val translation = card.findViewById<TextView>(R.id.word_translation)
-                            val pronunciation = card.findViewById<TextView>(R.id.word_pronunciation)
-                            val image = card.findViewById<ImageView>(R.id.image_word)
-                            container.addView(card)
+        // Подписываемся на Flow и обновляем UI при изменении данных
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.words.collect { words ->
+                    container.removeAllViews()
+                    words.forEach { word ->
+                        val card = layoutInflater.inflate(R.layout.word, container, false)
+                        val title = card.findViewById<TextView>(R.id.word_title)
+                        val translation = card.findViewById<TextView>(R.id.word_translation)
+                        val pronunciation = card.findViewById<TextView>(R.id.word_pronunciation)
+                        val image = card.findViewById<ImageView>(R.id.image_word)
+                        container.addView(card)
 
-                            title.text = word.title
-                            translation.text = word.translation
-                            pronunciation.text = word.pronunciation
-                            imageLoader.load(image, word.img)
+                        title.text = word.title
+                        translation.text = word.translation
+                        pronunciation.text = word.pronunciation
+                        imageLoader.load(image, word.img)
 
-                            card.setOnClickListener {
-                                Intent(Intent.ACTION_VIEW).apply {
-                                    data = ACTION_EDITWORD.toUri()
-                                    flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
-                                    putExtra("word_id", word.id.toString())
-                                }.also(::startActivity)
-                            }
+                        card.setOnClickListener {
+                            Intent(Intent.ACTION_VIEW).apply {
+                                data = ACTION_EDITWORD.toUri()
+                                flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
+                                putExtra("word_id", word.id.toString())
+                            }.also(::startActivity)
                         }
                     }
                 }

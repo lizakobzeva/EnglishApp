@@ -12,4 +12,7 @@
     <color name="greenMain">#57934B</color>
     <color name="darkGreen">#485F43</color>
     <color name="grayMain">#F1F1F1</color>
+    <color name="grayLight">#F5F5F5</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="textSecondaryDark">#333333</color>
 </resources>

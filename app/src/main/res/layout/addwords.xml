@@ -10,30 +10,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="20dp">
+            style="@style/HeaderLayout">
             <ImageView
                 android:id="@+id/close"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                style="@style/IconLarge"
                 android:src="@drawable/round_arrow_back"
-                android:layout_marginEnd="36dp" />
+                android:layout_marginEnd="@dimen/back_button_margin_end" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Добавить слово"
-                android:textSize="28sp"
-                android:textColor="@color/darkGreen" />
+                style="@style/HeaderTitle" />
         </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0" />
+        <View style="@style/Divider" />
     </LinearLayout>
 
     <LinearLayout
@@ -68,12 +59,7 @@
 
             <LinearLayout
                 android:id="@+id/addwords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="90dp"
-                />
+                style="@style/ScrollContent" />
         </ScrollView>
     </LinearLayout>
 

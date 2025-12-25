@@ -17,17 +17,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="20dp" >
+                style="@style/HeaderLayout">
                 <ImageView
                     android:id="@+id/close"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    style="@style/IconLarge"
                     android:src="@drawable/round_arrow_back"
-                    android:layout_marginEnd="36dp"
+                    android:layout_marginEnd="@dimen/back_button_margin_end"
                     />
 
                 <TextView
@@ -36,25 +31,21 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Редактирование"
-                    android:textSize="28sp"
-                    android:textColor="@color/darkGreen"
+                    style="@style/HeaderTitle"
                     />
 
                 <ImageView
                     android:id="@+id/delete_word"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/icon_size_large"
+                    android:layout_height="@dimen/icon_size_large"
                     android:src="@drawable/ic_delete"
                     android:contentDescription="Удалить слово"
-                    android:padding="8dp"
+                    android:padding="@dimen/icon_action_padding"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     />
 
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#E0E0E0" />
+            <View style="@style/Divider" />
 
         </LinearLayout>
 
@@ -63,14 +54,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingHorizontal="30dp"
+            android:paddingHorizontal="@dimen/bottom_bar_padding_horizontal_medium"
             >
             <ImageView
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="@dimen/image_margin_top"
                 android:id="@+id/edit_word_image"
-                android:layout_width="310dp"
-                android:layout_height="310dp"
-                android:background="@drawable/rounded_image_background"
+                style="@style/ImageEditWord"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_image_view"
                 />
@@ -78,89 +67,63 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/form_field_margin_top_large"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Слово"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="8dp" />
+                    style="@style/TextLabel" />
 
                 <EditText
                     android:id="@+id/editWord"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Cat"
-                    android:textSize="16sp"
-                    android:padding="12dp"
-                    android:background="@drawable/btn_gray_rounded" />
+                    style="@style/EditTextDefault"
+                    android:text="Cat" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/form_field_margin_top"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Перевод"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="8dp" />
+                    style="@style/TextLabel" />
 
                 <EditText
                     android:id="@+id/editTranslation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Кошка"
-                    android:textSize="16sp"
-                    android:padding="12dp"
-                    android:background="@drawable/btn_gray_rounded"
-                    />
+                    style="@style/EditTextDefault"
+                    android:text="Кошка" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/form_field_margin_top"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Произношение"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="8dp" />
+                    style="@style/TextLabel" />
 
                 <EditText
                     android:id="@+id/editPronunciation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/EditTextDefault"
                     android:text="[kæt]"
-                    android:textSize="16sp"
-                    android:padding="12dp"
-                    android:background="@drawable/btn_gray_rounded"
-                    android:layout_marginBottom="32dp" />
+                    android:layout_marginBottom="@dimen/edittext_margin_bottom_xl" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-
-        android:elevation="12dp"
-        android:gravity="center">
+        style="@style/BottomBarCenter">
 
         <Button
             android:id="@+id/btn_learning"
-            android:layout_width="280dp"
-            android:layout_height="55dp"
-            android:backgroundTint="@color/greenMain"
-            android:text="Сохранить"
-            android:textSize="26sp"
-            />
+            style="@style/ButtonPrimaryMedium"
+            android:text="Сохранить" />
     </LinearLayout>
 </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Button
 import com.example.api.ImageLoader
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -21,6 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.Lifecycle
 import com.example.api.WordConstants.ACTION_ADDWORD
 import com.example.api.WordConstants.ACTION_EDITWORD
+import com.example.api.WordConstants.ACTION_STUDY
 import com.example.impl.R
 import com.example.impl.ui.viewmodel.WordsViewModel
 import kotlinx.coroutines.launch
@@ -47,6 +49,7 @@ class WordsListFragment: Fragment() {
         val searchButton = view.findViewById<ImageView>(R.id.btn_search)
         val searchInput = view.findViewById<EditText>(R.id.search_input)
         val addWordButton = view.findViewById<ImageButton>(R.id.btn_add)
+        val studyButton = view.findViewById<Button>(R.id.btn_learning)
 
         // Обработчик кнопки поиска
         if (searchButton == null) {
@@ -55,7 +58,7 @@ class WordsListFragment: Fragment() {
         if (searchInput == null) {
             Log.e("WordsListFragment", "Search input is null!")
         }
-        
+
         searchButton?.let { button ->
             button.isClickable = true
             button.isFocusable = true
@@ -90,52 +93,44 @@ class WordsListFragment: Fragment() {
                 data = ACTION_ADDWORD.toUri()
                 flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
             }.also(::startActivity)
-//            val addWordFragment = AddWordFragment()
-//
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.main, addWordFragment)
-//                .addToBackStack("com/example/impl/words_list")
-//                .commit()
 
         }
 
-        // Подписываемся на Flow и обновляем UI при изменении данных
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.words.collect { words ->
-                    container.removeAllViews()
-                    words.forEach { word ->
-                        val card = layoutInflater.inflate(R.layout.word, container, false)
-                        val title = card.findViewById<TextView>(R.id.word_title)
-                        val translation = card.findViewById<TextView>(R.id.word_translation)
-                        val pronunciation = card.findViewById<TextView>(R.id.word_pronunciation)
-                        val image = card.findViewById<ImageView>(R.id.image_word)
-                        container.addView(card)
+        studyButton.setOnClickListener {
+            Intent(Intent.ACTION_VIEW).apply {
+                data = ACTION_STUDY.toUri()
+                flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }.also(::startActivity)
 
-                        title.text = word.title
-                        translation.text = word.translation
-                        pronunciation.text = word.pronunciation
-                        imageLoader.load(image, word.img)
+            // Подписываемся на Flow и обновляем UI при изменении данных
+            viewLifecycleOwner.lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.words.collect { words ->
+                        container.removeAllViews()
+                        words.forEach { word ->
+                            val card = layoutInflater.inflate(R.layout.word, container, false)
+                            val title = card.findViewById<TextView>(R.id.word_title)
+                            val translation = card.findViewById<TextView>(R.id.word_translation)
+                            val pronunciation = card.findViewById<TextView>(R.id.word_pronunciation)
+                            val image = card.findViewById<ImageView>(R.id.image_word)
+                            container.addView(card)
 
-                        card.setOnClickListener {
-                            Intent(Intent.ACTION_VIEW).apply {
-                                data = ACTION_EDITWORD.toUri()
-                                flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
-                                putExtra("word_id", word.id.toString())
-                            }.also(::startActivity)
-//
-//                val editWordFragment = EditWordFragment()
-//
-//                parentFragmentManager.beginTransaction()
-//                    .replace(R.id.main, editWordFragment)
-//                    .addToBackStack("com/example/impl/words_list")
-//                    .commit()
+                            title.text = word.title
+                            translation.text = word.translation
+                            pronunciation.text = word.pronunciation
+                            imageLoader.load(image, word.img)
+
+                            card.setOnClickListener {
+                                Intent(Intent.ACTION_VIEW).apply {
+                                    data = ACTION_EDITWORD.toUri()
+                                    flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
+                                    putExtra("word_id", word.id.toString())
+                                }.also(::startActivity)
+                            }
                         }
                     }
                 }
             }
         }
     }
-
-
 }

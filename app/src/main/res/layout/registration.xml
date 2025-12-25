@@ -9,10 +9,9 @@
     android:paddingHorizontal="32dp"
     tools:context=".MainActivity">
 
-
     <TextView
         android:id="@+id/tvGreeting"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:letterSpacing="0.02"
@@ -22,103 +21,113 @@
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Button
-        android:id="@+id/btn_sign_up"
-        android:layout_width="340dp"
-        android:layout_height="70dp"
-        android:layout_weight="0.8"
-        android:backgroundTint="@color/greenMain"
-        android:text="ЗАРЕГИСТРИРОВАТЬСЯ"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="594dp" />
-
     <TextView
+        android:id="@+id/tvNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Имя"
         android:textColor="#666666"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="159dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Почта"
-        android:textColor="#666666"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="266dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Пароль"
-        android:textColor="#666666"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="372dp" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Повтор"
-        android:textColor="#666666"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="481dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGreeting" />
 
     <EditText
-        android:id="@+id/wordInput"
-        android:layout_width="337dp"
+        android:id="@+id/etName"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
         android:hint="Введите имя"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="192dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNameLabel" />
+
+    <TextView
+        android:id="@+id/tvEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Почта"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etName" />
 
     <EditText
-        android:id="@+id/wordInput"
-        android:layout_width="337dp"
+        android:id="@+id/etEmail"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
         android:hint="Введите почту"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="300dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailLabel" />
+
+    <TextView
+        android:id="@+id/tvPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Пароль"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
 
     <EditText
-        android:id="@+id/wordInput"
-        android:layout_width="337dp"
+        android:id="@+id/etPassword"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
         android:hint="Введите пароль"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="407dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPasswordLabel" />
+
+    <TextView
+        android:id="@+id/tvRepeatPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Повтор"
+        android:textColor="#666666"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
 
     <EditText
-        android:id="@+id/wordInput"
-        android:layout_width="337dp"
+        android:id="@+id/etRepeatPassword"
+        android:layout_width="0dp"
         android:layout_height="52dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/edittext_background"
         android:hint="Повторите пароль"
         android:padding="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="515dp" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRepeatPasswordLabel" />
+
+    <Button
+        android:id="@+id/btn_sign_up"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/greenMain"
+        android:text="ЗАРЕГИСТРИРОВАТЬСЯ"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etRepeatPassword"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

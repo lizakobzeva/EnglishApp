@@ -12,52 +12,64 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Button
-import com.example.api.ImageLoader
-import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.widget.ViewPager2
 import com.example.api.WordConstants.ACTION_ADDWORD
-import com.example.api.WordConstants.ACTION_EDITWORD
 import com.example.api.WordConstants.ACTION_STUDY
 import com.example.impl.R
-import com.example.impl.ui.viewmodel.WordsViewModel
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import com.example.impl.data.database.DatabaseProvider
+import com.example.impl.data.repository.WordsRepository
+import com.example.impl.spacedrepetition.data.repository.SpacedRepetitionRepository
+import com.example.impl.spacedrepetition.domain.usecase.GetWordsByStatusUseCase
+import com.example.impl.spacedrepetition.ui.WordsListWithSpacedRepetitionViewModel
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class WordsListFragment: Fragment() {
-    private val viewModel: WordsViewModel by viewModels {
-        WordsListViewModelFactory(requireContext().applicationContext)
+    private val viewModel: WordsListWithSpacedRepetitionViewModel by viewModels {
+        WordsListWithSpacedRepetitionViewModelFactory(requireContext().applicationContext)
     }
-    private val imageLoader by inject<ImageLoader<ImageView>>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.words_list, container, false)
+        Log.d("WordsListFragment", "onCreateView() called")
+        val view = inflater.inflate(R.layout.words_list, container, false)
+        Log.d("WordsListFragment", "View inflated: ${view != null}")
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val container = view.findViewById<ViewGroup>(R.id.words_list)
+        Log.d("WordsListFragment", "onViewCreated() called")
+        
         val searchButton = view.findViewById<ImageView>(R.id.btn_search)
         val searchInput = view.findViewById<EditText>(R.id.search_input)
         val addWordButton = view.findViewById<ImageButton>(R.id.btn_add)
         val studyButton = view.findViewById<Button>(R.id.btn_learning)
-
-        if (searchButton == null) {
-            Log.e("WordsListFragment", "Search button is null!")
+        val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
+        val viewPager = view.findViewById<ViewPager2>(R.id.view_pager)
+        
+        Log.d("WordsListFragment", "Views found - TabLayout: ${tabLayout != null}, ViewPager: ${viewPager != null}")
+        
+        // Проверка, что TabLayout и ViewPager найдены
+        if (tabLayout == null) {
+            Log.e("WordsListFragment", "TabLayout is null!")
+            return
         }
-        if (searchInput == null) {
-            Log.e("WordsListFragment", "Search input is null!")
+        if (viewPager == null) {
+            Log.e("WordsListFragment", "ViewPager is null!")
+            return
         }
+        
+        Log.d("WordsListFragment", "ViewModel obtained: ${viewModel != null}")
 
+        // Настройка поиска
         searchButton?.let { button ->
             button.isClickable = true
             button.isFocusable = true
@@ -86,48 +98,84 @@ class WordsListFragment: Fragment() {
             }
         })
 
+        // Кнопки добавления и обучения
         addWordButton.setOnClickListener {
             Intent(Intent.ACTION_VIEW).apply {
                 data = ACTION_ADDWORD.toUri()
                 flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
             }.also(::startActivity)
-
         }
 
         studyButton.setOnClickListener {
+            Log.d("WordsListFragment", "Study button clicked")
             Intent(Intent.ACTION_VIEW).apply {
                 data = ACTION_STUDY.toUri()
                 flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
-            }.also(::startActivity)
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.words.collect { words ->
-                    container.removeAllViews()
-                    words.forEach { word ->
-                        val card = layoutInflater.inflate(R.layout.word, container, false)
-                        val title = card.findViewById<TextView>(R.id.word_title)
-                        val translation = card.findViewById<TextView>(R.id.word_translation)
-                        val pronunciation = card.findViewById<TextView>(R.id.word_pronunciation)
-                        val image = card.findViewById<ImageView>(R.id.image_word)
-                        container.addView(card)
-
-                        title.text = word.title
-                        translation.text = word.translation
-                        pronunciation.text = word.pronunciation
-                        imageLoader.load(image, word.img)
-
-                        card.setOnClickListener {
-                            Intent(Intent.ACTION_VIEW).apply {
-                                data = ACTION_EDITWORD.toUri()
-                                flags += Intent.FLAG_ACTIVITY_SINGLE_TOP
-                                putExtra("word_id", word.id.toString())
-                            }.also(::startActivity)
-                        }
-                    }
-                }
+            }.also { intent ->
+                Log.d("WordsListFragment", "Starting activity with ACTION_STUDY: ${intent.data}")
+                startActivity(intent)
             }
         }
+
+        // Настройка ViewPager и TabLayout
+        Log.d("WordsListFragment", "Creating fragments for ViewPager...")
+        val fragments = listOf(
+            WordsListTabFragment().apply {
+                setWordsFlow(viewModel.newWords)
+                setViewModel(viewModel)
+                Log.d("WordsListFragment", "Created fragment 0 (New Words)")
+            },
+            WordsListTabFragment().apply {
+                setWordsFlow(viewModel.learningWords)
+                setViewModel(viewModel)
+                Log.d("WordsListFragment", "Created fragment 1 (Learning Words)")
+            },
+            WordsListTabFragment().apply {
+                setWordsFlow(viewModel.learnedWords)
+                setViewModel(viewModel)
+                Log.d("WordsListFragment", "Created fragment 2 (Learned Words)")
+            }
+        )
+
+        Log.d("WordsListFragment", "Creating adapter with ${fragments.size} fragments")
+        val adapter = WordsListPagerAdapter(requireActivity(), fragments)
+        viewPager.adapter = adapter
+        Log.d("WordsListFragment", "Adapter set to ViewPager")
+
+        // Связываем TabLayout с ViewPager2
+        Log.d("WordsListFragment", "Attaching TabLayoutMediator...")
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = when (position) {
+                0 -> "Новые"
+                1 -> "Обучаемые"
+                2 -> "Выученные"
+                else -> ""
+            }
+            Log.d("WordsListFragment", "Tab $position created with text: ${tab.text}")
+        }.attach()
+        Log.d("WordsListFragment", "TabLayoutMediator attached")
+        
+        // Логирование для отладки
+        Log.d("WordsListFragment", "TabLayout and ViewPager initialized")
+        Log.d("WordsListFragment", "TabLayout: ${tabLayout != null}, ViewPager: ${viewPager != null}")
+        Log.d("WordsListFragment", "TabLayout visibility: ${tabLayout.visibility}, height: ${tabLayout.height}")
+        Log.d("WordsListFragment", "ViewPager visibility: ${viewPager.visibility}, height: ${viewPager.height}")
+    }
+}
+
+// ViewModelFactory для WordsListWithSpacedRepetitionViewModel
+class WordsListWithSpacedRepetitionViewModelFactory(
+    private val applicationContext: android.content.Context
+) : androidx.lifecycle.ViewModelProvider.Factory {
+    override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(WordsListWithSpacedRepetitionViewModel::class.java)) {
+            val database = DatabaseProvider.getDatabase(applicationContext)
+            val wordsRepository = WordsRepository(database.wordDao())
+            val spacedRepetitionRepository = SpacedRepetitionRepository(database.spacedRepetitionDao())
+            val getWordsByStatusUseCase = GetWordsByStatusUseCase(wordsRepository, spacedRepetitionRepository)
+            @Suppress("UNCHECKED_CAST")
+            return WordsListWithSpacedRepetitionViewModel(getWordsByStatusUseCase) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

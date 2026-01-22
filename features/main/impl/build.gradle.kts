@@ -58,4 +58,10 @@ dependencies {
     // Lifecycle
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.runtime.ktx)
+    
+    // ViewPager2
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    
+    // WorkManager
+    implementation(libs.work.runtime.ktx)
 }

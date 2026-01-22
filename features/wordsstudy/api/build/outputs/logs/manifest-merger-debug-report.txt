@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml:2:1-4:12
-INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml:2:1-4:12
+ADDED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml:2:1-4:12
+INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml:2:1-4:12
 	package
-		INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml
+		INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml:2:11-69
+		ADDED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
-INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml
-INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml
+INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml
+INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml
+		INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/lizakobzeva/AndroidStudioProjects/EnglishApp/features/wordsstudy/api/src/main/AndroidManifest.xml
+		INJECTED from C:\EnglishApp\features\wordsstudy\api\src\main\AndroidManifest.xml

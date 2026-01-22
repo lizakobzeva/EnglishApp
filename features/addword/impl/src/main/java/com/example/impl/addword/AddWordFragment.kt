@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import com.example.api.EditWordApi
 import com.example.api.ImageLoader
 import android.widget.TextView
@@ -52,6 +53,7 @@ class AddWordFragment: Fragment() {
         val wordInput = view.findViewById<EditText>(R.id.wordInput)
         val foundText = view.findViewById<TextView>(R.id.found_text)
         val instructionText = view.findViewById<TextView>(R.id.instruction_text)
+        val loadingProgress = view.findViewById<ProgressBar>(R.id.loading_progress)
 
         closeButton?.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -67,6 +69,7 @@ class AddWordFragment: Fragment() {
                     container.removeAllViews()
                     foundText?.visibility = View.GONE
                     instructionText?.visibility = View.VISIBLE
+                    loadingProgress?.visibility = View.GONE
                     return
                 }
                 
@@ -83,19 +86,44 @@ class AddWordFragment: Fragment() {
     }
     
     private suspend fun searchWord(query: String, container: ViewGroup) {
+        Log.d("AddWordFragment", "searchWord called with query: $query")
         container.removeAllViews()
         
+        // Показываем лоадер
+        view?.post {
+            val loadingProgress = view?.findViewById<ProgressBar>(R.id.loading_progress)
+            loadingProgress?.visibility = View.VISIBLE
+        }
+        
         val result = wordInfoService.getWordInfo(query)
+        Log.d("AddWordFragment", "Got result from wordInfoService: ${result.isSuccess}")
         result.fold(
             onSuccess = { wordInfo ->
+                Log.d("AddWordFragment", "Success! WordInfo: $wordInfo")
                 view?.post {
+                    // Скрываем лоадер
+                    val loadingProgress = view?.findViewById<ProgressBar>(R.id.loading_progress)
+                    loadingProgress?.visibility = View.GONE
                     showWordCard(container, wordInfo)
                 }
             },
             onFailure = { error ->
                 Log.e("AddWordFragment", "Error fetching word info", error)
+                Log.e("AddWordFragment", "Error type: ${error.javaClass.simpleName}")
+                Log.e("AddWordFragment", "Error message: ${error.message}")
+                error.printStackTrace()
                 view?.post {
+                    // Скрываем лоадер
+                    val loadingProgress = view?.findViewById<ProgressBar>(R.id.loading_progress)
+                    loadingProgress?.visibility = View.GONE
                     container.removeAllViews()
+                    // Показываем сообщение об ошибке пользователю
+                    val errorText = TextView(requireContext())
+                    errorText.text = "Ошибка: ${error.message ?: "Не удалось получить информацию о слове"}"
+                    errorText.textSize = 16f
+                    errorText.setTextColor(android.graphics.Color.RED)
+                    errorText.setPadding(32, 32, 32, 32)
+                    container.addView(errorText)
                 }
             }
         )
@@ -114,14 +142,15 @@ class AddWordFragment: Fragment() {
 
         title.text = wordInfo.title
         translation.text = wordInfo.translation
-        pronunciation.text = wordInfo.pronunciation
+        // Используем title_pronunciation для отображения произношения английского слова
+        pronunciation.text = wordInfo.title_pronunciation
         imageLoader.load(image, wordInfo.img)
 
         card.setOnClickListener {
             val editFragment = editWordApi.getEditWordFragmentForAdd(
                 title = wordInfo.title,
                 translation = wordInfo.translation,
-                pronunciation = wordInfo.pronunciation,
+                pronunciation = wordInfo.title_pronunciation,
                 img = wordInfo.img
             )
             val containerId = requireActivity().resources.getIdentifier("main", "id", requireActivity().packageName)
@@ -135,7 +164,7 @@ class AddWordFragment: Fragment() {
             val wordEntity = WordEntity(
                 title = wordInfo.title,
                 translation = wordInfo.translation,
-                pronunciation = wordInfo.pronunciation,
+                pronunciation = wordInfo.title_pronunciation,
                 img = wordInfo.img
             )
             viewModel.insertWord(wordEntity)

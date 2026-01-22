@@ -22,7 +22,7 @@
     <!-- Text Sizes -->
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
-    <dimen name="text_size_header">28sp</dimen>
+    <dimen name="text_size_header">18sp</dimen>
     
     <!-- EditText -->
     <dimen name="edittext_padding">12dp</dimen>

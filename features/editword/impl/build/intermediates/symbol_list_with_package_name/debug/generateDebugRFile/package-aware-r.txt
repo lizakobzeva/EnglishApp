@@ -31,6 +31,7 @@ dimen text_size_large
 dimen text_size_medium
 dimen text_size_xxl
 drawable btn_gray_rounded
+drawable dashed_arrow
 drawable ic_delete
 drawable round_arrow_back
 drawable rounded_image_background
@@ -40,7 +41,6 @@ id delete_word
 id editPronunciation
 id editTranslation
 id editWord
-id edit_image_view
 id edit_word_image
 id title_text
 layout editword

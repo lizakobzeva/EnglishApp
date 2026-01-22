@@ -5,107 +5,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/word_studying"
-    >
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/word_studying_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/exit"
-            android:textColor="#000000"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <ProgressBar
-            android:id="@+id/word_studying_progressbutton"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_width="300dp"
-            android:layout_height="20dp"
-            android:max="100"
-            android:progress="50"
-            android:progressDrawable="@drawable/custom_progress_bar"
-            app:layout_constraintBottom_toTopOf="@+id/word_studying_titletext"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/word_studying_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="20/60"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/word_studying_titletext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="Программирование"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/word_studying_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0" />
+    android:background="#FFFFFF">
 
     <ImageView
-        android:id="@+id/word_studying_image"
+        android:id="@+id/word_studying_check_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/exit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/word_studying_check_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/14"
+        android:textSize="26sp"
+        android:textColor="#000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/word_studying_check_progressbutton"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_exit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <TextView
+        android:id="@+id/word_studying_check_titletext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Вода"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_progressbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <ImageView
+        android:id="@+id/word_studying_check_image"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/btn_gray_rounded"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/word_studying_editWord"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_titletext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.881" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
 
     <EditText
-        android:id="@+id/word_studying_editWord"
+        android:id="@+id/word_studying_check_editWord"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="top|start"
+        android:minHeight="120dp"
+        android:paddingTop="36dp"
+        android:paddingStart="36dp"
+        android:paddingBottom="36dp"
+        android:background="#F5F5F5"
+        android:hint="Введите слово..."
+        android:textColorHint="#999999"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/word_studying_check_correct_answer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginBottom="108dp"
-        android:background="@drawable/btn_gray_rounded"
-        android:enabled="true"
-        android:gravity="top|start"
-        android:hint="Введите слово..."
-        android:minHeight="120dp"
-        android:paddingStart="36dp"
-        android:paddingTop="36dp"
-        android:paddingBottom="36dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text=""
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/word_studying_checkbutton"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_editWord"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/word_studying_image" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/word_studying_check_checkbutton"/>
 
     <Button
-        android:id="@+id/word_studying_checkbutton"
-        android:layout_width="match_parent"
+        android:id="@+id/word_studying_check_checkbutton"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:text="Проверить"
         android:backgroundTint="#C6C6C6"
@@ -113,25 +119,29 @@
         android:textSize="26sp"
         android:paddingHorizontal="20dp"
         android:layout_marginHorizontal="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_correct_answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="25dp"
-        android:visibility="visible"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:id="@+id/word_studying_nextbutton"
-        android:layout_width="match_parent"
+        android:id="@+id/word_studying_check_nextbutton"
+        android:layout_width="0dp"
         android:layout_height="70dp"
         android:text="Далее"
+        android:backgroundTint="#C6C6C6"
         android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:paddingHorizontal="20dp"
         android:layout_marginHorizontal="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="25dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/word_studying_check_correct_answer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="25dp"
-        android:visibility="gone"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,16 @@
 package com.example.impl.data.database
 
+import android.util.Log
 import com.example.impl.data.dao.WordDao
 import com.example.impl.data.entity.WordEntity
+import com.example.impl.spacedrepetition.data.dao.SpacedRepetitionDao
+import com.example.impl.spacedrepetition.data.entity.SpacedRepetitionEntity
 import kotlinx.coroutines.flow.first
 
 object DatabaseInitializer {
     suspend fun initialize(database: AppDatabase) {
         val wordDao = database.wordDao()
+        val spacedRepetitionDao = database.spacedRepetitionDao()
         
         val allRequiredWords = listOf(
                 WordEntity(
@@ -95,6 +99,39 @@ object DatabaseInitializer {
                 }
             } catch (e: Exception) {
             }
+        }
+        
+        // Инициализируем интервальное повторение для всех существующих слов
+        try {
+            val allWords = wordDao.getAllWords().first()
+            Log.d("DatabaseInitializer", "Total words found: ${allWords.size}")
+            
+            val existingSpacedRepetitions = spacedRepetitionDao.getByWordIds(allWords.map { it.id })
+            val existingWordIds = existingSpacedRepetitions.map { it.wordId }.toSet()
+            Log.d("DatabaseInitializer", "Existing spaced repetitions: ${existingSpacedRepetitions.size}")
+            
+            val newSpacedRepetitions = allWords
+                .filter { it.id !in existingWordIds }
+                .map { word ->
+                    SpacedRepetitionEntity(
+                        wordId = word.id,
+                        currentStep = 0,
+                        nextReviewDate = 0,
+                        interval = 0,
+                        easeFactor = 2.5,
+                        lastReviewDate = 0,
+                        consecutiveCorrectAnswers = 0
+                    )
+                }
+            
+            Log.d("DatabaseInitializer", "New spaced repetitions to create: ${newSpacedRepetitions.size}")
+            
+            if (newSpacedRepetitions.isNotEmpty()) {
+                spacedRepetitionDao.insertAll(newSpacedRepetitions)
+                Log.d("DatabaseInitializer", "Successfully initialized ${newSpacedRepetitions.size} words for spaced repetition")
+            }
+        } catch (e: Exception) {
+            Log.e("DatabaseInitializer", "Error initializing spaced repetition", e)
         }
     }
 }

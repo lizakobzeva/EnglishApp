@@ -4,12 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.impl.data.entity.WordEntity
 import com.example.impl.data.repository.WordsRepository
+import com.example.impl.spacedrepetition.domain.usecase.InitializeWordForSpacedRepetitionUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 
-class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
+class WordsViewModel(
+    private val repository: WordsRepository,
+    private val initializeWordForSpacedRepetitionUseCase: InitializeWordForSpacedRepetitionUseCase? = null
+) : ViewModel() {
     private val allWords: Flow<List<WordEntity>> = repository.getAllWords()
     private val searchQuery = MutableStateFlow("")
     
@@ -34,7 +38,9 @@ class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
     
     fun insertWord(word: WordEntity) {
         viewModelScope.launch {
-            repository.insertWord(word)
+            val wordId = repository.insertWord(word)
+            // Инициализируем интервальное повторение для нового слова
+            initializeWordForSpacedRepetitionUseCase?.execute(wordId)
         }
     }
     

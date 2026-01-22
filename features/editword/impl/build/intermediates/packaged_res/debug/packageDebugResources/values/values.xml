@@ -27,7 +27,7 @@
     <dimen name="spacing_medium">12dp</dimen>
     <dimen name="spacing_small">8dp</dimen>
     <dimen name="spacing_xl">20dp</dimen>
-    <dimen name="text_size_header">28sp</dimen>
+    <dimen name="text_size_header">18sp</dimen>
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_xxl">26sp</dimen>
@@ -56,6 +56,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/edittext_padding</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/textMainColor</item>
+        <item name="android:textColorHint">#999999</item>
         <item name="android:background">@drawable/btn_gray_rounded</item>
     </style>
     <style name="HeaderLayout">

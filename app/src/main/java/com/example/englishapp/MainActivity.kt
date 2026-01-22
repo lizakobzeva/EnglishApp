@@ -2,6 +2,7 @@ package com.example.englishapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("MainActivity", "onCreate() called")
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -28,16 +30,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(savedInstanceState == null){
+            Log.d("MainActivity", "savedInstanceState is null, handling intent")
             handleIntent(intent)
+        } else {
+            Log.d("MainActivity", "savedInstanceState is not null, skipping handleIntent")
         }
     }
     
     private fun handleIntent(intent: Intent?) {
+        Log.d("MainActivity", "handleIntent() called, intent: ${intent?.data}")
         val deeplink = intent?.data
         if (deeplink == null) {
+            Log.d("MainActivity", "No deeplink, showing WordsListFragment")
+            val fragment = WordsListFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main, WordsListFragment())
+                .replace(R.id.main, fragment)
                 .commitAllowingStateLoss()
+            Log.d("MainActivity", "WordsListFragment transaction committed")
             return
         }
 
@@ -62,12 +71,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             ACTION_STUDY -> {
+                Log.d("MainActivity", "ACTION_STUDY received, creating WordsStudyFragment")
                 val wordStudyFragment = WordsStudyFragment()
 
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main, wordStudyFragment)
                     .addToBackStack("com/example/impl/words_list")
                     .commit()
+                Log.d("MainActivity", "WordsStudyFragment transaction committed")
             }
 
             else -> {
@@ -81,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        Log.d("MainActivity", "onNewIntent() called, intent: ${intent.data}")
         setIntent(intent)
         handleIntent(intent)
     }

@@ -92,6 +92,7 @@ id addwords
 id close
 id found_text
 id instruction_text
+id loading_progress
 id wordInput
 layout addword
 layout addwords

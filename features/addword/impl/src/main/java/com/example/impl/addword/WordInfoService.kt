@@ -12,7 +12,7 @@ class WordInfoService {
     private val client = OkHttpClient()
     private val json = Json { ignoreUnknownKeys = true }
 
-    private val baseUrl = "http://10.0.2.2:8080/api/word_info"
+    private val baseUrl = "http://192.144.15.171/api/word_info"
     
     suspend fun getWordInfo(query: String): Result<WordInfoResponse> = withContext(Dispatchers.IO) {
         try {

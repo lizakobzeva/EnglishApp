@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.api.EditWordApi
 import com.example.api.ImageLoader
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -30,6 +31,7 @@ class AddWordFragment: Fragment() {
         WordsListViewModelFactory(requireContext().applicationContext)
     }
     private val imageLoader by inject<ImageLoader<ImageView>>()
+    private val editWordApi by inject<EditWordApi>()
     private val wordInfoService = WordInfoService()
     
     private var searchJob: Job? = null
@@ -114,6 +116,20 @@ class AddWordFragment: Fragment() {
         translation.text = wordInfo.translation
         pronunciation.text = wordInfo.pronunciation
         imageLoader.load(image, wordInfo.img)
+
+        card.setOnClickListener {
+            val editFragment = editWordApi.getEditWordFragmentForAdd(
+                title = wordInfo.title,
+                translation = wordInfo.translation,
+                pronunciation = wordInfo.pronunciation,
+                img = wordInfo.img
+            )
+            val containerId = requireActivity().resources.getIdentifier("main", "id", requireActivity().packageName)
+            parentFragmentManager.beginTransaction()
+                .replace(containerId, editFragment)
+                .addToBackStack("add_word")
+                .commit()
+        }
 
         addButton.setOnClickListener {
             val wordEntity = WordEntity(

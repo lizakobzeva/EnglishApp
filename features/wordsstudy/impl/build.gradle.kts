@@ -45,5 +45,11 @@ dependencies {
 
     implementation("androidx.activity:activity-ktx:1.12.0")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
+    implementation(project(":features:main:impl"))
+    implementation(project(":libs:imageloader:coil"))
+    implementation(project(":libs:di"))
+    
+    implementation(libs.lifecycle.viewmodel.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 }
 

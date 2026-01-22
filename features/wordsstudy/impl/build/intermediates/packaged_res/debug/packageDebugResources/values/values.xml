@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="grayButton">#C6C6C6</color>
     <color name="grayMain">#F1F1F1</color>
+    <color name="green">#4CAF50</color>
+    <color name="greenLight">#C8E6C9</color>
+    <color name="red">#F44336</color>
+    <color name="redLight">#FFCDD2</color>
     <color name="white">#FFFFFFFF</color>
     <dimen name="spacing_xl">20dp</dimen>
     <dimen name="word_study_button_height">70dp</dimen>

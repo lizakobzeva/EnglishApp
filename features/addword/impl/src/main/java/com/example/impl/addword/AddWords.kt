@@ -11,3 +11,4 @@ enum class AddWords(val title: String, val translation: String, val pronunciatio
     WORDS_8("Consiquences", "Последствия", "[kaet]" ,"https://www.shutterstock.com/shutterstock/photos/2658836849/display_1500/stock-vector-consequence-icon-element-for-design-2658836849.jpg"),
 }
 
+
